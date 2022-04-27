@@ -6,7 +6,16 @@
 // http post localhost:3000/api/guess
 // http post localhost:3000/api/guess guess=adieu
 
-import { defineHandle, useCookie, setCookie, useBody } from 'h3'
+import { createError, defineHandle, useCookie, setCookie, useBody } from 'h3'
+import { storage } from '#storage'
+// you can swap out the driver in prod to your fav severless datatbase solution
+import MemoryDriver from 'unstorage/drivers/memory'
+
+import wordList from 'wordlist-english/index.js'
+const validWords = wordList['english/10'].filter((word) => word.length === 5)
+
+// you can mount driver to different sections of storage
+storage.mount('', MemoryDriver())
 
 const decode = (state = '[]'): GameState => JSON.parse(state)
 const encode = (state: GameState): string => JSON.stringify(state)
@@ -27,7 +36,15 @@ export default defineHandle(async (req, res) => {
     })
   }
 
-  const word = 'super'
+  const day = new Date().toISOString().slice(0, 10)
+  const word: string =
+    (await storage.getItem(day)) ||
+    validWords[Math.floor(Math.random() * validWords.length)]
+
+  // then set word in storage
+  await storage.setItem(day, word)
+
+  // const word = 'super'
 
   // preserve state in a cookie,
   // so that when you hard refresh the page it will preserve your state
