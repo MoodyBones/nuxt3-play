@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps({
-  state: Array as () => GamesState,
+  state: Array as () => GameState,
 })
 
 const hintMap = {
