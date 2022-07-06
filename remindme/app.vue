@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gray-50 dark:bg-gray-900 min-h-screen">
-    <NuxtPage :appName="appName" />
+    <NuxtPage :app-name="appName" />
   </div>
 </template>
 

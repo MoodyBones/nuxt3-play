@@ -15,6 +15,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.1.9",
     "@vueuse/core": "^8.8.0",
+    "lodash.uniqueid": "^4.0.1",
     "pinia": "^2.0.14"
   }
 }
