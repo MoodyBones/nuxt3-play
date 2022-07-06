@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs"
+  },
+  "devDependencies": {
+    "@picocss/pico": "^1.5.0",
+    "nuxt-windicss": "^2.3.0",
+    "nuxt": "npm:nuxt3@latest",
+    "wordlist-english": "^1.2.1"
+  }
+}
