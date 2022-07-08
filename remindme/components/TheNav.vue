@@ -10,7 +10,7 @@ const toggleDark = () => {
 </script>
 
 <template>
-  <nav class="flex my-2 flex-nowrap justify-between items-center">
+  <nav class="my-2 flex flex-nowrap items-center justify-between">
     <NuxtLink
       to="/"
       class="text-3xl font-extrabold tracking-tight text-gray-700 dark:text-gray-200"

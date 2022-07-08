@@ -10,16 +10,6 @@ export default defineNuxtConfig({
   ],
   css: ['@/assets/css/main.css'],
 
-  build: {
-    postcss: {
-      postcssOptions: {
-        plugins: {
-          tailwindcss: {},
-          autoprefixer: {},
-        },
-      },
-    },
-  },
   // https://color-mode.nuxtjs.org
   colorMode: {
     classSuffix: '',
