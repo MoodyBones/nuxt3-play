@@ -1,12 +1,16 @@
 <template>
-  <main class="mx-auto container px-4 md:px-12 flex flex-col">
+  <main class="container mx-auto flex flex-col px-4 md:px-12">
     <TheNav :app-name="appName" />
-    <article class="max-w-prose w-full mx-auto border">
-      <ul
-        aria-labelledby="list-summary"
-        class="flex flex-col gap-12 pt-12 bg-gray-100"
-      >
-        <li v-for="item in noteItems" :key="item.id" class="border bg-gray-50">
+    <article>
+      <h2 class="text-sm text-gray-600">
+        Today is {{ isWeekday }}. You have {{ activeNotes }}
+        {{ activeNotes > 1 ? 'todos' : 'todo' }} active. 💪
+        {{ colorMode.value === 'light' ? '🌞' : '🌝' }}
+      </h2>
+    </article>
+    <article class="mx-auto w-full max-w-prose">
+      <ul aria-labelledby="list-summary" class="flex flex-col gap-4 pt-12">
+        <li v-for="item in noteItems" :key="item.id" class="">
           <NoteItem
             :id="item.id"
             :label="item.label"
@@ -22,9 +26,25 @@
 </template>
 
 <script setup>
+import { useTitle } from '@vueuse/core'
 import uniqueId from 'lodash.uniqueid'
 
-const noteItems = [
+const props = defineProps({
+  appName: String,
+})
+
+const days = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+]
+const isWeekday = computed(() => days[new Date().getDay()])
+
+const noteItems = reactive([
   { id: uniqueId('note-'), label: 'Learn Pinia', done: false },
   {
     id: uniqueId('note-'),
@@ -32,11 +52,19 @@ const noteItems = [
     done: true,
   },
   { id: uniqueId('note-'), label: 'Have fun', done: true },
-]
+])
 
-defineProps({
-  appName: String,
+const activeNotes = computed(() => {
+  return noteItems.filter((note) => note.done === false).length
 })
+const title = computed(() => {
+  return !activeNotes.value
+    ? props.appName
+    : `${activeNotes.value} active | ${props.appName}`
+})
+
+useTitle(title)
+const colorMode = useColorMode()
 
 // function addNote(noteLabel) {
 //   this.noteItems.push({
