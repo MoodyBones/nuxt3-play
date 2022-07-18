@@ -5,7 +5,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <nav class="my-2">
+  <nav class="my-3">
     <ul class="flex flex-nowrap items-center justify-between">
       <li>
         <NuxtLink

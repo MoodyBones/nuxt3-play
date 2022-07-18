@@ -39,13 +39,13 @@ const title = computed(() => {
 useTitle(title)
 const colorMode = useColorMode()
 
-// function addNote(noteLabel) {
-//   this.noteItems.push({
-//     id: uniqueId('todo-'),
-//     label: noteLabel,
-//     done: false,
-//   })
-// }
+function addNote(noteLabel) {
+  noteItems.push({
+    id: uniqueId('note-'),
+    label: noteLabel,
+    done: false,
+  })
+}
 
 function updateDoneStatus(noteId) {
   const noteToUpdate = this.noteItems.find((item) => item.id === noteId)
@@ -74,6 +74,8 @@ function editNote(noteId, newLabel) {
         {{ colorMode.value === 'light' ? '🌞' : '🌝' }}
       </h2>
     </article>
+    <NoteForm @note-added="addNote" />
+
     <article class="mx-auto w-full max-w-prose">
       <ul aria-labelledby="list-summary" class="flex flex-col gap-4 pt-12">
         <li v-for="item in noteItems" :key="item.id" class="">
