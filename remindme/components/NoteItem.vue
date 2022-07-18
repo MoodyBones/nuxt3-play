@@ -2,7 +2,7 @@
   <transition>
     <div
       v-if="!isEditing"
-      class="flex justify-between gap-6 pb-6 border-b-2 border-indigo-100"
+      class="flex justify-between gap-6 rounded-xl border border-b-2 border-gray-200 bg-gray-50 p-4 pb-6"
     >
       <div class="flex-grow">
         <input
@@ -10,13 +10,14 @@
           type="checkbox"
           :checked="isDone"
           @change="$emit('checkbox-changed')"
+          class="ml-2 mr-6 scale-150"
         />
-        <label :for="id">{{ label }}</label>
+        <label :for="id" class="text-xl text-gray-900">{{ label }}</label>
       </div>
-      <div class="flex-shrink self-end flex gap-4">
+      <div class="flex flex-shrink gap-4 self-end">
         <button ref="editButton" type="button" @click="toggleToItemEditForm">
           <svg
-            class="w-6 h-6"
+            class="h-6 w-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -33,7 +34,7 @@
         </button>
         <button type="button" @click="deleteNote">
           <svg
-            class="w-6 h-6"
+            class="h-6 w-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
