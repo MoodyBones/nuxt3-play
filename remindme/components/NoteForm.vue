@@ -1,10 +1,10 @@
 <script setup>
-const emit = defineEmits(['note-added'])
+const emit = defineEmits(['noteAdded'])
 const label = ref('')
 
 function onSubmit() {
   if (label.value === '') return
-  emit('note-added', label.value)
+  emit('noteAdded', label.value)
   label.value = ''
 }
 </script>

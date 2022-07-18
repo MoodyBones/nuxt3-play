@@ -26,6 +26,7 @@ const noteItems = reactive([
   },
   { id: uniqueId('note-'), label: 'Have fun', done: true },
 ])
+const listSummary = ref(null)
 
 const activeNotes = computed(() => {
   return noteItems.filter((note) => note.done === false).length
@@ -53,22 +54,22 @@ function updateDoneStatus(noteId) {
 }
 
 function deleteNote(noteId) {
-  const itemIndex = this.noteItems.findIndex((item) => item.id === noteId)
-  this.noteItems.splice(itemIndex, 1)
-  this.$refs.listSummary.focus()
+  const itemIndex = noteItems.findIndex((item) => item.id === noteId)
+  noteItems.splice(itemIndex, 1)
+  listSummary.value.focus()
 }
 
-function editNote(noteId, newLabel) {
-  const noteToEdit = this.noteItems.find((item) => item.id === noteId)
-  noteToEdit.label = newLabel
-}
+// function editNote(noteId, newLabel) {
+//   const noteToEdit = this.noteItems.find((item) => item.id === noteId)
+//   noteToEdit.label = newLabel
+// }
 </script>
 
 <template>
   <main class="container mx-auto flex flex-col px-4 md:px-12">
     <TheNav :app-name="appName" />
     <article>
-      <h2 class="text-sm text-gray-600">
+      <h2 class="text-sm text-gray-600" ref="listSummary">
         Today is {{ isWeekday }}. You have {{ activeNotes }}
         {{ activeNotes > 1 ? 'todos' : 'todo' }} active. 💪
         {{ colorMode.value === 'light' ? '🌞' : '🌝' }}
@@ -85,8 +86,8 @@ function editNote(noteId, newLabel) {
             :done="item.done"
             @checkbox-changed="updateDoneStatus(item.id)"
             @item-deleted="deleteNote(item.id)"
-            @item-edited="editNote(item.id, $event)"
           />
+          <!-- @item-edited="editNote(item.id, $event)" -->
         </li>
       </ul>
     </article>
