@@ -49,7 +49,7 @@ function addNote(noteLabel) {
 }
 
 function updateDoneStatus(noteId) {
-  const noteToUpdate = this.noteItems.find((item) => item.id === noteId)
+  const noteToUpdate = noteItems.find((item) => item.id === noteId)
   noteToUpdate.done = !noteToUpdate.done
 }
 
@@ -59,10 +59,10 @@ function deleteNote(noteId) {
   listSummary.value.focus()
 }
 
-// function editNote(noteId, newLabel) {
-//   const noteToEdit = this.noteItems.find((item) => item.id === noteId)
-//   noteToEdit.label = newLabel
-// }
+function editNote(noteId, newLabel) {
+  const noteToEdit = noteItems.find((item) => item.id === noteId)
+  noteToEdit.label = newLabel
+}
 </script>
 
 <template>
@@ -88,8 +88,8 @@ function deleteNote(noteId) {
             :done="item.done"
             @checkbox-changed="updateDoneStatus(item.id)"
             @item-deleted="deleteNote(item.id)"
+            @on-edit="editNote(item.id, $event)"
           />
-          <!-- @item-edited="editNote(item.id, $event)" -->
         </li>
       </ul>
     </article>

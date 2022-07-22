@@ -1,3 +1,39 @@
+<script setup>
+const props = defineProps({
+  label: { required: true, type: String },
+  done: { default: false, type: Boolean },
+  id: { required: true, type: String },
+})
+const emit = defineEmits(['checkboxChanged', 'itemDeleted', 'onEdit'])
+
+const isEditing = ref(false)
+const isDone = computed(() => props.done)
+const editButton = ref(null) // this name must match the template ref value
+
+function toggleToItemEditForm() {
+  isEditing.value = true
+}
+
+function itemEdited(newLabel) {
+  emit('onEdit', newLabel)
+  isEditing.value = false
+  focusOnEditButton()
+}
+
+function editCancelled() {
+  isEditing.value = false
+  focusOnEditButton()
+}
+
+function focusOnEditButton() {
+  // If a method needs to be invoked after the DOM has updated.
+  // Wrap the existing function body inside a $nextTick() call.
+  nextTick(() => {
+    editButton.value.focus()
+  })
+}
+</script>
+
 <template>
   <transition>
     <div
@@ -9,7 +45,7 @@
           :id="id"
           type="checkbox"
           :checked="isDone"
-          @change="$emit('checkboxChanged')"
+          @change="$emit('checkbox-changed')"
           class="ml-2 mr-6 scale-150"
         />
         <label :for="id" class="text-xl text-gray-900">{{ label }}</label>
@@ -51,58 +87,12 @@
         </button>
       </div>
     </div>
-    <!-- <NoteItemEditForm
+    <NoteItemEditForm
       v-else
       :id="id"
       :label="label"
       @item-edited="itemEdited"
       @edit-cancelled="editCancelled"
-    /> -->
+    />
   </transition>
 </template>
-
-<script setup>
-const props = defineProps({
-  label: { required: true, type: String },
-  done: { default: false, type: Boolean },
-  id: { required: true, type: String },
-})
-defineEmits([
-  'checkboxChanged',
-  'itemDeleted',
-  // 'edit-cancelled',
-])
-
-const isEditing = ref(false)
-const isDone = computed(() => props.done)
-
-function toggleToItemEditForm() {
-  // will output HTML element referenced
-  // console.log(this.$refs.editButton)
-  isEditing.value = true
-}
-
-// function itemEdited(newLabel) {
-//   this.$emit('item-edited', newLabel)
-//   this.isEditing = false
-//   // move user focus to edit button
-//   this.focusOnEditButton()
-// }
-
-// function editCancelled() {
-//   this.isEditing = false
-//   // move user focus to edit button
-//   this.focusOnEditButton()
-// }
-
-// function focusOnEditButton() {
-//   // If a method needs to be invoked after the DOM has updated.
-//   // Wrap the existing function body inside a $nextTick() call.
-//   this.$nextTick(() => {
-//     // assign ref to a variable
-//     const editButtonRef = this.$refs.editButton
-//     // call the focus method on the ref
-//     editButtonRef.focus()
-//   })
-// }
-</script>
