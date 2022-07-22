@@ -66,7 +66,9 @@ function deleteNote(noteId) {
 </script>
 
 <template>
-  <main class="container mx-auto flex flex-col px-4 md:px-12">
+  <main
+    class="container mx-auto flex w-full max-w-prose flex-col px-4 md:px-12"
+  >
     <TheNav :app-name="appName" />
     <article>
       <h2 class="text-sm text-gray-600" ref="listSummary">
