@@ -72,7 +72,7 @@ function deleteNote(noteId) {
       <h2 class="text-sm text-gray-600" ref="listSummary">
         Today is {{ isWeekday }}. You have {{ activeNotes }}
         {{ activeNotes > 1 ? 'todos' : 'todo' }} active. 💪
-        {{ colorMode.value === 'light' ? '🌞' : '🌝' }}
+        {{ colorMode === 'light' ? '🌞' : '🌝' }}
       </h2>
     </article>
     <NoteForm @note-added="addNote" />
