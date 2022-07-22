@@ -9,7 +9,7 @@
           :id="id"
           type="checkbox"
           :checked="isDone"
-          @change="emit('checkbox-changed')"
+          @change="$emit('checkboxChanged')"
           class="ml-2 mr-6 scale-150"
         />
         <label :for="id" class="text-xl text-gray-900">{{ label }}</label>
@@ -32,7 +32,7 @@
           </svg>
           <span class="sr-only">Edit {{ label }}</span>
         </button>
-        <button type="button" @click="emit('item-deleted')">
+        <button type="button" @click="$emit('item-deleted')">
           <svg
             class="h-6 w-6"
             fill="none"
@@ -67,8 +67,7 @@ const props = defineProps({
   done: { default: false, type: Boolean },
   id: { required: true, type: String },
 })
-
-const emit = defineEmits([
+defineEmits([
   'checkboxChanged',
   'itemDeleted',
   // 'edit-cancelled',
