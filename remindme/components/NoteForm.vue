@@ -19,7 +19,7 @@ function onSubmit() {
       <input
         id="new-note-input"
         v-model.lazy.trim="label"
-        class="mt-4 w-full appearance-none rounded-xl border-2 border-gray-200 bg-gray-200 py-2 px-4 leading-tight text-gray-700 focus:outline-none"
+        class="mt-4 w-full appearance-none rounded-xl border-2 border-gray-200 bg-gray-200 py-3 px-4 text-lg leading-tight text-gray-700 focus:outline-none"
         type="text"
         name="new-note"
         autocomplete="off"

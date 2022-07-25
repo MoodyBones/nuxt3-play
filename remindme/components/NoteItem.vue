@@ -46,7 +46,7 @@ function focusOnEditButton() {
           type="checkbox"
           :checked="isDone"
           @change="$emit('checkbox-changed')"
-          class="ml-2 mr-6 scale-150"
+          class="ml-2 mr-6 scale-150 checked:bg-green-600"
         />
         <label :for="id" class="text-xl text-gray-900">{{ label }}</label>
       </div>

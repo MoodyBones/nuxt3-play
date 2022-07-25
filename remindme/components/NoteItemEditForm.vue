@@ -26,7 +26,7 @@ function onCancel() {
 
 <template>
   <form
-    class="flex flex-col justify-between gap-6 border-b-2 border-indigo-100 pb-6"
+    class="flex flex-col justify-between gap-6 pb-6"
     @submit.prevent="onEditSubmit"
   >
     <div class="flex-grow">
@@ -37,13 +37,13 @@ function onCancel() {
         v-model.lazy.trim="newLabel"
         type="text"
         autocomplete="off"
-        class="w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 py-2 px-4 leading-tight text-gray-700 focus:outline-none"
+        class="w-full appearance-none rounded-xl border-2 border-gray-200 bg-gray-200 py-3 px-4 text-lg leading-tight text-gray-700 focus:outline-none"
       />
     </div>
     <div class="flex flex-shrink gap-4 self-end">
       <button
         type="button"
-        class="rounded border-2 border-indigo-600 px-4 py-4 text-lg font-bold uppercase text-indigo-600 shadow-sm transition-all ease-out hover:bg-indigo-600 hover:text-white"
+        class="mt-2 rounded-full border-2 border-gray-400 bg-transparent px-4 py-1 font-medium text-gray-400 shadow-sm transition-all ease-out hover:border-gray-700 hover:bg-gray-700 hover:text-white"
         @click="onCancel"
       >
         <svg
@@ -64,7 +64,7 @@ function onCancel() {
       </button>
       <button
         type="submit"
-        class="rounded border-2 border-green-600 px-4 py-4 text-lg font-bold uppercase text-green-600 shadow-sm transition-all ease-out hover:bg-green-600 hover:text-white"
+        class="mt-2 rounded-full border-2 border-green-600 bg-green-600 px-4 py-1 font-medium text-gray-50 shadow-sm transition-all ease-out hover:border-green-500 hover:bg-green-500 hover:text-white"
       >
         <svg
           class="h-6 w-6"
