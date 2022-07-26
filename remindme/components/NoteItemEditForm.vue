@@ -43,7 +43,7 @@ function onCancel() {
     <div class="flex flex-shrink gap-4 self-end">
       <button
         type="button"
-        class="mt-2 rounded-full border-2 border-gray-400 bg-transparent px-4 py-1 font-medium text-gray-400 shadow-sm transition-all ease-out hover:border-gray-700 hover:bg-gray-700 hover:text-white"
+        class="mt-2 rounded-full border-2 border-gray-300 bg-transparent px-4 py-1 font-medium text-gray-700 shadow-sm transition-all ease-out hover:border-gray-700 hover:bg-gray-700 hover:text-white"
         @click="onCancel"
       >
         <svg
