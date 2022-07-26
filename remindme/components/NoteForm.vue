@@ -14,12 +14,14 @@ function onSubmit() {
     class="flex flex-col justify-between gap-2 border-b-2 border-gray-100 pb-4"
     @submit.prevent="onSubmit"
   >
-    <div class="mt-1.5 flex-grow text-gray-900">
-      <label for="new-note-input"> What needs to be done? </label>
+    <div class="mt-1.5 flex-grow text-gray-700">
+      <label for="new-note-input" class="text-xl font-medium tracking-tight">
+        What needs to be done?
+      </label>
       <input
         id="new-note-input"
         v-model.lazy.trim="label"
-        class="mt-4 w-full appearance-none rounded-xl border-2 border-gray-200 bg-gray-200 py-3 px-4 text-lg leading-tight text-gray-700 focus:outline-none"
+        class="mt-3 w-full appearance-none rounded-xl border-2 border-gray-200 bg-gray-200 py-3 px-4 text-lg leading-tight text-gray-700 focus:outline-none"
         type="text"
         name="new-note"
         autocomplete="off"

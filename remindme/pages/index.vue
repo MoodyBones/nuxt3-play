@@ -77,7 +77,7 @@ function editNote(noteId, newLabel) {
         {{ colorMode === 'light' ? '🌞' : '🌝' }}
       </h2>
     </article>
-    <NoteForm @note-added="addNote" />
+    <NoteForm class="mt-3" @note-added="addNote" />
 
     <article class="mx-auto w-full max-w-prose">
       <ul aria-labelledby="list-summary" class="flex flex-col gap-4 pt-12">
